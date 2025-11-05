@@ -1,31 +1,30 @@
 <script setup lang="ts">
-type URLs = {
-  to: string,
-  label: string
-}
 
-const navLinks = ref < URLs[] > ([
-  { to: '/', label: 'Home' },
-  { to: '/', label: 'Projects' },
-  { to: '/', label: 'Arts' },
-  { to: '/', label: 'About' },
-])
 </script>
 
 <template>
-  <header>
-    <div class="w-full px-36 py-3 flex items-center justify-between">
-      <img src="/logo.svg" alt="">
+  <div class="py-12 flex flex-col items-center space-y-12">
+    <div class="flex flex-col items-center space-y-3">
+      <p class="text-4xl font-bold">Loan Application</p>
+      <p class="text-base text-gray-900">
+        Complete all steps to submit your application
+      </p>
+    </div>
 
-      <div class="flex items-center space-x-20">
-        <div v-for="nav in navLinks" class="p-1 space-y-2 group">
-          <span href="" class="text-xl">{{ nav.label }}</span>
+    <div class="w-full max-w-5xl bg-white rounded-lg p-6">
+      <div class="flex flex-col items-start w-full space-y-2">
+        <div class="w-full justify-between flex items-center">
+          <p class="text-base text-gray-500">Step 1 of 12</p>
 
-          <div class="w-full border-0 group-hover:border group-hover:border-black" />
+          <p class="text-base text-gray-500">8%</p>
+        </div>
+
+        <div class="relative w-full rounded-full overflow-hidden h-2 bg-gray-200">
+          <div class="grid grid-cols-12 w-full">
+            <div class="col-span-1 bg-blue-500 w-full h-2" />
+          </div>
         </div>
       </div>
     </div>
-  </header>
-
-  <slot />
+  </div>
 </template>
