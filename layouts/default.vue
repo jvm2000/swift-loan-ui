@@ -11,12 +11,12 @@
       </p>
     </div>
 
-    <div class="w-full max-w-5xl bg-white rounded-lg p-6">
+    <div class="w-full max-w-5xl bg-white rounded-lg p-6 space-y-6">
       <div class="flex flex-col items-start w-full space-y-2">
         <div class="w-full justify-between flex items-center">
-          <p class="text-base text-gray-500">Step 1 of 12</p>
+          <p class="text-sm text-gray-500">Step 1 of 12</p>
 
-          <p class="text-base text-gray-500">8%</p>
+          <p class="text-sm text-gray-500">8%</p>
         </div>
 
         <div class="relative w-full rounded-full overflow-hidden h-2 bg-gray-200">
@@ -24,7 +24,11 @@
             <div class="col-span-1 bg-blue-500 w-full h-2" />
           </div>
         </div>
+
+        <p class="text-xl font-medium text-black">Primary Applicant - Personal Information</p>
       </div>
+
+      <slot />
     </div>
   </div>
 </template>

@@ -3,12 +3,22 @@
 </script>
 
 <template>
-  <div class="py-6 flex flex-col items-center space-y-4">
-    <div class="flex flex-col items-center space-y-4">
-      <p class="text-4xl font-bold">Loan Application</p>
-      <p class="text-xl text-gray-900">
-        Complete all steps to submit your application
-      </p>
-    </div>
+  <div class="space-y-4">
+    <BaseInput 
+      label="First Name"
+      placeholder="Enter first name"
+      required
+    />
+
+    <BaseInput 
+      label="Middle Name"
+      placeholder="Enter middle name (optional)"
+    />
+
+    <BaseInput 
+      label="Last Name"
+      placeholder="Enter last name"
+      required
+    />
   </div>
 </template>
