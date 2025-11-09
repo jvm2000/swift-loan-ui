@@ -12,7 +12,7 @@ const genders: Gender[] = [
 </script>
 
 <template>
-  <div class="space-y-4">
+  <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
       label="First Name"
       placeholder="Enter first name"
@@ -42,5 +42,15 @@ const genders: Gender[] = [
       :options="genders"
       required
     />
+  </div>
+
+  <div class="flex items-center w-full justify-between">
+    <button class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center">
+      <span class="text-gray-400 text-sm">Previous</span>
+    </button>
+
+    <button class="px-4 py-2 bg-blue-500 rounded-lg text-center">
+      <span class="text-white text-sm">Next</span>
+    </button>
   </div>
 </template>
