@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const { currentStep, progress, totalSteps } = useForm()
 </script>
 
 <template>
@@ -14,14 +14,17 @@
     <div class="w-full max-w-3xl bg-white rounded-lg p-6 space-y-6">
       <div class="flex flex-col items-start w-full space-y-2">
         <div class="w-full justify-between flex items-center">
-          <p class="text-sm text-gray-500">Step 1 of 12</p>
+          <p class="text-sm text-gray-500">Step {{ currentStep }}of {{totalSteps }}</p>
 
           <p class="text-sm text-gray-500">8%</p>
         </div>
 
         <div class="relative w-full rounded-full overflow-hidden h-2 bg-gray-200">
-          <div class="grid grid-cols-12 w-full">
-            <div class="col-span-1 bg-blue-500 w-full h-2" />
+          <div class="w-full relative">
+            <div 
+              class="bg-blue-500 transition-all h-2"
+              :style="{ width: progress + '%' }"
+            />
           </div>
         </div>
 
