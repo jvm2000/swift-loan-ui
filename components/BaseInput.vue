@@ -15,7 +15,7 @@ type InputProps = {
   /**
    * The label to display for the input.
    */
-  label?: string
+  label: string
 
   /**
    * An error message or messages value indicating whether the input is in an error state.
@@ -33,7 +33,7 @@ const props = withDefaults(
   defineProps<{
     id?: InputProps['id'],
     placeholder?: InputProps['placeholder'],
-    label?: InputProps['label'],
+    label: InputProps['label'],
     error?: InputProps['error'],
     required?: InputProps['required']
   }>(),
@@ -55,12 +55,29 @@ watch(
 function handleInput(event: Event) {
   errorMessage.value = ''
 }
+
+const parts = computed(() => props.label?.split('/'))
 </script>
 
 <template>  
   <div class="flex flex-col space-y-2.5">
     <label :for="props.id" class="text-sm text-black font-medium">
-      {{ props.label }} <span v-if="props.required" class="text-red-500">*</span>
+      <template v-if="parts.length > 1">
+        <template v-for="(part, index) in parts" :key="index">
+          <span class="font-medium text-black">{{ part }}</span>
+          <!-- Only the slash is font-normal and gray -->
+          <span
+            v-if="index < parts.length - 1"
+            class="font-normal text-gray-500 mx-1"
+          >/</span>
+        </template>
+      </template>
+
+      <template v-else>
+        {{ props.label }}
+      </template>
+
+      <span v-if="props.required" class="text-red-500">*</span>
     </label>
 
     <div class="flex items-center relative">
