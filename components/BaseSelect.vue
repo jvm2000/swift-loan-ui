@@ -87,7 +87,7 @@ const props = withDefaults(
             leave-to-class="opacity-0"
           >
             <ListboxOptions
-              class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white p-1 text-base shadow-lg focus:outline-none sm:text-sm"
+              class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white p-1 text-base shadow-lg focus:outline-none sm:text-sm z-[100]"
             >
               <ListboxOption
                 v-slot="{ active, selected }"
