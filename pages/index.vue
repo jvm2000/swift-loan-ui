@@ -9,6 +9,15 @@ const genders: Gender[] = [
   { name: 'Female', value: 'female' },
   { name: 'Others', value: 'others' }
 ]
+const { prevStep, nextStep } = useForm()
+
+function proceedToAddress() {
+  navigateTo('/address')
+
+  nextStep()
+}
+
+useHead({ title: 'Personal' })
 </script>
 
 <template>
@@ -45,11 +54,11 @@ const genders: Gender[] = [
   </div>
 
   <div class="flex items-center w-full justify-between">
-    <button class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center">
+    <button class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center" disabled>
       <span class="text-gray-400 text-sm">Previous</span>
     </button>
 
-    <button class="px-4 py-2 bg-blue-500 rounded-lg text-center">
+    <button class="px-4 py-2 bg-blue-500 rounded-lg text-center" @click="proceedToAddress">
       <span class="text-white text-sm">Next</span>
     </button>
   </div>

@@ -14,7 +14,7 @@ const { currentStep, progress, totalSteps } = useForm()
     <div class="w-full max-w-3xl bg-white rounded-lg p-6 space-y-6">
       <div class="flex flex-col items-start w-full space-y-2">
         <div class="w-full justify-between flex items-center">
-          <p class="text-sm text-gray-500">Step {{ currentStep }}of {{totalSteps }}</p>
+          <p class="text-sm text-gray-500">Step {{ currentStep }} of {{ totalSteps }}</p>
 
           <p class="text-sm text-gray-500">8%</p>
         </div>

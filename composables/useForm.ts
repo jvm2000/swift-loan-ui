@@ -12,11 +12,10 @@ const stepMap: Record<any, number> = {
   summary: 11,
   confirmation: 12,
 }
+const currentStep = ref<number>(1)
+const totalSteps = 12
 
 export const useForm = () => {
-  const currentStep = ref<number>(1)
-  const totalSteps = 12
-
   function setStep(step: number) {
     if (typeof step === 'string') currentStep.value = stepMap[step]
     
