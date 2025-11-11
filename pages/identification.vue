@@ -13,9 +13,15 @@ const maritalStatuses: MaritalStatus[] = [
 const { prevStep, nextStep } = useForm()
 
 function backToAddress() {
-  navigateTo('/')
+  navigateTo('/address')
 
   prevStep()
+}
+
+function proceedToEmployment() {
+  navigateTo('/employment')
+
+  nextStep()
 }
 
 useHead({ title: 'Identification' })
@@ -51,7 +57,10 @@ useHead({ title: 'Identification' })
       <span class="text-gray-400 text-sm">Previous</span>
     </button>
 
-    <button class="px-4 py-2 bg-blue-500 rounded-lg text-center">
+    <button 
+      class="px-4 py-2 bg-blue-500 rounded-lg text-center"
+      @click="proceedToEmployment"
+    >
       <span class="text-white text-sm">Next</span>
     </button>
   </div>
