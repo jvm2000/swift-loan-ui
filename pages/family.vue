@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { prevStep, nextStep } = useForm()
+const title = useState<string>('page-title')
+title.value = 'Primary Applicant - Family Information'
 
 function backToIncome() {
   navigateTo('/income')
@@ -7,13 +9,13 @@ function backToIncome() {
   prevStep()
 }
 
-function proceedToFamily() {
-  navigateTo('/employment')
+function proceedToPersonalCoBurrower() {
+  navigateTo('/borrower-personal')
 
   nextStep()
 }
 
-useHead({ title: 'Family' })
+useHead({ title: 'Primary Applicant - Family' })
 </script>
 
 <template>
@@ -35,7 +37,7 @@ useHead({ title: 'Family' })
 
     <button 
       class="px-4 py-2 bg-blue-500 rounded-lg text-center"
-      @click="proceedToFamily"
+      @click="proceedToPersonalCoBurrower"
     >
       <span class="text-white text-sm">Next</span>
     </button>

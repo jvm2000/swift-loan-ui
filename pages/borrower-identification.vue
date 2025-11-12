@@ -1,10 +1,10 @@
 <script setup lang="ts">
-type MaritalStatus = {
+type Options = {
   name: string,
   value: string
 }
 
-const maritalStatuses: MaritalStatus[] = [
+const maritalStatuses: Options[] = [
   { name: 'Single', value: 'single' },
   { name: 'Married', value: 'married' },
   { name: 'Divorced', value: 'divorced' },
@@ -12,21 +12,21 @@ const maritalStatuses: MaritalStatus[] = [
 ]
 const { prevStep, nextStep } = useForm()
 const title = useState<string>('page-title')
-title.value = 'Primary Applicant - Identification'
+title.value = 'Co-Borrower - Identification'
 
 function backToAddress() {
-  navigateTo('/address')
+  navigateTo('/borrower-address')
 
   prevStep()
 }
 
 function proceedToEmployment() {
-  navigateTo('/employment')
+  navigateTo('/borrower-employment')
 
   nextStep()
 }
 
-useHead({ title: 'Primary Applicant - Identification' })
+useHead({ title: 'Co-Borrower - Identification' })
 </script>
 
 <template>
@@ -59,10 +59,7 @@ useHead({ title: 'Primary Applicant - Identification' })
       <span class="text-gray-400 text-sm">Previous</span>
     </button>
 
-    <button 
-      class="px-4 py-2 bg-blue-500 rounded-lg text-center"
-      @click="proceedToEmployment"
-    >
+    <button class="px-4 py-2 bg-blue-500 rounded-lg text-center" @click="proceedToEmployment">
       <span class="text-white text-sm">Next</span>
     </button>
   </div>

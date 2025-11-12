@@ -1,31 +1,31 @@
 <script setup lang="ts">
-type Owneship = {
+type Options = {
   name: string,
   value: string
 }
 
-const owneships: Owneship[] = [
+const owneships: Options[] = [
   { name: 'Owned', value: 'owned' },
   { name: 'Rented', value: 'rented' },
   { name: 'Living with Relatives', value: 'living with relatives' }
 ]
 const { prevStep, nextStep } = useForm()
 const title = useState<string>('page-title')
-title.value = 'Primary Applicant - Address Information'
+title.value = 'Co-Borrower - Address Information'
 
 function backToPersonal() {
-  navigateTo('/')
+  navigateTo('/borrower-personal')
 
   prevStep()
 }
 
-function proceedToIdentification() {
-  navigateTo('/identification')
+function proceedToIdentificationb() {
+  navigateTo('/borrower-identification')
 
   nextStep()
 }
 
-useHead({ title: 'Primary Applicant - Address' })
+useHead({ title: 'Co-Borrower - Address' })
 </script>
 
 <template>
@@ -54,6 +54,11 @@ useHead({ title: 'Primary Applicant - Address' })
       placeholder="e.g. +63 994 371 33992"
       required
     />
+
+    <BaseInput 
+      label="Landline Number"
+      placeholder="e.g. (02) 1234 5678 (optional)"
+    />
   </div>
 
   <div class="flex items-center w-full justify-between">
@@ -64,10 +69,7 @@ useHead({ title: 'Primary Applicant - Address' })
       <span class="text-gray-400 text-sm">Previous</span>
     </button>
 
-    <button 
-      class="px-4 py-2 bg-blue-500 rounded-lg text-center"
-      @click="proceedToIdentification"
-    >
+    <button class="px-4 py-2 bg-blue-500 rounded-lg text-center" @click="proceedToIdentificationb">
       <span class="text-white text-sm">Next</span>
     </button>
   </div>

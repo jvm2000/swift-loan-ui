@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const { currentStep, progress, totalSteps } = useForm()
+
+const title = useState<string>('page-title', () => '')
 </script>
 
 <template>
@@ -16,7 +18,7 @@ const { currentStep, progress, totalSteps } = useForm()
         <div class="w-full justify-between flex items-center">
           <p class="text-sm text-gray-500">Step {{ currentStep }} of {{ totalSteps }}</p>
 
-          <p class="text-sm text-gray-500">8%</p>
+          <p class="text-sm text-gray-500">{{ progress }}%</p>
         </div>
 
         <div class="relative w-full rounded-full overflow-hidden h-2 bg-gray-200">
@@ -28,7 +30,9 @@ const { currentStep, progress, totalSteps } = useForm()
           </div>
         </div>
 
-        <p class="text-xl font-medium text-black">Primary Applicant - Personal Information</p>
+        <p class="text-xl font-medium text-black">
+          {{ title }}
+        </p>
       </div>
 
       <slot />

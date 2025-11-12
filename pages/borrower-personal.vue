@@ -1,25 +1,37 @@
 <script setup lang="ts">
-type Gender = {
+type Options = {
   name: string,
   value: string
 }
 
-const genders: Gender[] = [
+const genders: Options[] = [
   { name: 'Male', value: 'male' },
   { name: 'Female', value: 'female' },
   { name: 'Others', value: 'others' }
 ]
-const { nextStep } = useForm()
+const relationships: Options[] = [
+  { name: 'Parent', value: 'parent' },
+  { name: 'Spouse', value: 'spouse' },
+  { name: 'Sibling', value: 'sibling' },
+  { name: 'Common Law Partner', value: 'common law partner' },
+]
+const { prevStep, nextStep } = useForm()
 const title = useState<string>('page-title')
-title.value = 'Primary Applicant - Personal Information'
+title.value = 'Co-Borrower - Personal Information'
+
+function backToFamily() {
+  navigateTo('/family')
+
+  prevStep()
+}
 
 function proceedToAddress() {
-  navigateTo('/address')
+  navigateTo('/borrower-address')
 
   nextStep()
 }
 
-useHead({ title: 'Primary Applicant - Personal' })
+useHead({ title: 'Co-Borrower - Personal' })
 </script>
 
 <template>
@@ -53,10 +65,20 @@ useHead({ title: 'Primary Applicant - Personal' })
       :options="genders"
       required
     />
+
+    <BaseSelect 
+      label="Relationship to Principal Burrower"
+      placeholder="Select Relationship"
+      :options="relationships"
+      required
+    />
   </div>
 
   <div class="flex items-center w-full justify-between">
-    <button class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center" disabled>
+    <button 
+      class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center"
+      @click="backToFamily"
+    >
       <span class="text-gray-400 text-sm">Previous</span>
     </button>
 
