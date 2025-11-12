@@ -29,14 +29,8 @@ useHead({ title: 'Co-Borrower - Family' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
-      label="Monthly Income"
-      placeholder="e.g., ₱50,000"
-      required
-    />
-
-    <BaseInput 
-      label="Other Income (Sideline)"
-      placeholder="e.g., ₱10,000 (optional)"
+      label="Mother's Maiden Name"
+      placeholder="Enter mother's maiden name"
       required
     />
   </div>
