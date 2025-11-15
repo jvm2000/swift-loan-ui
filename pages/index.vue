@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useGoogleSheet } from '~/composables/useGoogleSheet'
+
 type Gender = {
   name: string,
   value: string
@@ -10,13 +12,21 @@ const genders: Gender[] = [
   { name: 'Others', value: 'others' }
 ]
 const { nextStep } = useForm()
+const { primaryPersonalInfoForm } = useStepsForm()
+const { submitForm, loading, error, success } = useGoogleSheet()
 const title = useState<string>('page-title')
 title.value = 'Primary Applicant - Personal Information'
 
-function proceedToAddress() {
+async function proceedToAddress() {
   navigateTo('/address')
 
   nextStep()
+
+  handleSubmit()
+}
+
+function handleSubmit() {
+  submitForm(primaryPersonalInfoForm.value)
 }
 
 useHead({ title: 'Primary Applicant - Personal' })
@@ -25,29 +35,34 @@ useHead({ title: 'Primary Applicant - Personal' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
+      v-model="primaryPersonalInfoForm.first_name"
       label="First Name"
       placeholder="Enter first name"
       required
     />
 
     <BaseInput 
+      v-model="primaryPersonalInfoForm.middle_name"
       label="Middle Name"
       placeholder="Enter middle name (optional)"
     />
 
     <BaseInput 
+      v-model="primaryPersonalInfoForm.last_name"
       label="Last Name"
       placeholder="Enter last name"
       required
     />
 
     <BaseDatePicker 
+      v-model="primaryPersonalInfoForm.birthday"
       label="Birthday"
       placeholder="Pick a date"
       required
     />
 
     <BaseSelect 
+      v-model="primaryPersonalInfoForm.gender"
       label="Gender"
       placeholder="Select Gender"
       :options="genders"
