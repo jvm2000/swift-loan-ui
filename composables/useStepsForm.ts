@@ -1,19 +1,19 @@
-import type { PrimaryAppAddressInfo, PrimaryAppIdentification, PrimaryAppPersonalInfo } from "~/types/form"
+import type { AddressInfo, Identification, PersonalInfo } from "~/types/form"
 
-const primaryPersonalInfoForm = ref<PrimaryAppPersonalInfo>({
+const primaryPersonalInfoForm = ref<PersonalInfo>({
   first_name: '',
   middle_name: '',
   last_name: '',
   birthday: '',
   gender: ''
 })
-const primaryAddressForm = ref<PrimaryAppAddressInfo>({
+const primaryAddressForm = ref<AddressInfo>({
   home_address: '',
   length_of_stay: '',
   ownership: '',
   contact_number: ''
 })
-const primaryIdentificationForm = ref<PrimaryAppIdentification>({
+const primaryIdentificationForm = ref<Identification>({
   marital_status: '',
   nationality: '',
   valid_id_number: ''

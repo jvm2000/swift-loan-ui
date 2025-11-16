@@ -1,4 +1,4 @@
-export type PrimaryAppPersonalInfo = {
+export type PersonalInfo = {
   first_name: string,
   middle_name?: string,
   last_name: string,
@@ -6,15 +6,21 @@ export type PrimaryAppPersonalInfo = {
   gender: string
 }
 
-export type PrimaryAppAddressInfo = {
+export type AddressInfo = {
   home_address: string,
   length_of_stay: string,
   ownership: string,
   contact_number: string
 }
 
-export type PrimaryAppIdentification = {
+export type Identification = {
   marital_status: string,
+  nationality: string,
+  valid_id_number: string
+}
+
+export type Employee = {
+  company_name: string,
   nationality: string,
   valid_id_number: string
 }
