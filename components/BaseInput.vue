@@ -52,7 +52,7 @@ watch(
   }
 )
 
-function handleInput(event: Event) {
+function handleInput() {
   errorMessage.value = ''
 }
 
@@ -74,7 +74,7 @@ const parts = computed(() => props.label?.split('/'))
       </template>
 
       <template v-else>
-        {{ props.label }}
+        <span :class="[errorMessage ? 'text-red-500' : '']">{{ props.label }}</span>
       </template>
 
       <span v-if="props.required" class="text-red-500">*</span>

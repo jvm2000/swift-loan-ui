@@ -11,10 +11,36 @@ const genders: Gender[] = [
 ]
 const { nextStep } = useForm()
 const { primaryPersonalInfoForm } = useStepsForm()
+const errors = ref<{ [key: string]: string[] }>({});
+const loading = ref(false)
 const title = useState<string>('page-title')
 title.value = 'Primary Applicant - Personal Information'
 
+function validatePrimaryPersonalInfo() {
+  const data = primaryPersonalInfoForm.value
+
+  if (!data.first_name?.trim()) errors.value.first_name = ["First name is required"]
+
+  if (!data.last_name?.trim()) errors.value.last_name = ["Last name is required"]
+
+  if (!data.birthday) errors.value.birthday = ["Birthday is required"]
+
+  if (!data.gender) errors.value.gender = ["Gender is required"]
+}
+
 async function proceedToAddress() {
+  loading.value = true
+
+  errors.value = {}
+
+  await new Promise(resolve => setTimeout(resolve, 1000))
+    
+  validatePrimaryPersonalInfo()
+
+  loading.value = false
+
+  if (Object.keys(errors.value).length) return
+
   navigateTo('/address')
 
   nextStep()
@@ -30,6 +56,7 @@ useHead({ title: 'Primary Applicant - Personal' })
       label="First Name"
       placeholder="Enter first name"
       required
+      :error="getError(errors, 'first_name')"
     />
 
     <BaseInput 
@@ -43,6 +70,7 @@ useHead({ title: 'Primary Applicant - Personal' })
       label="Last Name"
       placeholder="Enter last name"
       required
+      :error="getError(errors, 'last_name')"
     />
 
     <BaseDatePicker 
@@ -50,6 +78,7 @@ useHead({ title: 'Primary Applicant - Personal' })
       label="Birthday"
       placeholder="Pick a date"
       required
+      :error="getError(errors, 'birthday')"
     />
 
     <BaseSelect 
@@ -58,16 +87,18 @@ useHead({ title: 'Primary Applicant - Personal' })
       placeholder="Select Gender"
       :options="genders"
       required
+      :error="getError(errors, 'gender')"
     />
   </div>
 
   <div class="flex items-center w-full justify-between">
-    <button class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center" disabled>
-      <span class="text-gray-400 text-sm">Previous</span>
-    </button>
+    <BaseButton
+      is-secondary
+    >Previous</BaseButton>
 
-    <button class="px-4 py-2 bg-blue-500 rounded-lg text-center" @click="proceedToAddress">
-      <span class="text-white text-sm">Next</span>
-    </button>
+    <BaseButton
+      :is-loading="loading"
+      @click="proceedToAddress"
+    >Next</BaseButton>
   </div>
 </template>

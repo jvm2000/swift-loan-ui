@@ -58,8 +58,9 @@ const props = withDefaults(
         </svg>
       </ClientOnly>
 
+      <span v-if="isLoading">Loading...</span>
       
-      <slot />
+      <slot v-if="!isLoading" />
     </div>
   </button>
 </template>

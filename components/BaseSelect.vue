@@ -37,6 +37,7 @@ type SelectProps = {
 }
 
 const model = defineModel<any>({ required: false })
+const errorMessage = ref<string[] | string | null>('')
 const props = withDefaults(
   defineProps<{
     id?: SelectProps['id'],
@@ -52,6 +53,18 @@ const props = withDefaults(
     required: false
   }
 )
+
+
+watch(
+  () => props.error,
+  (value) => {
+    errorMessage.value = value
+  }
+)
+
+function handleSelect() {
+  errorMessage.value = ''
+}
 </script>
 
 <template>
@@ -61,21 +74,29 @@ const props = withDefaults(
     </label>
 
     <div class="relative">
-      <Listbox v-model="model">
+      <Listbox v-model="model" @update:model-value="handleSelect">
         <div class="relative mt-1">
           <ListboxButton
             class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm bg-gray-50"
+            :class="[errorMessage ? 'ring-1 ring-red-500 placeholder-red-500' : 'placeholder-custom-brown-300']"
           >
             <span 
-              class="block truncate capitalize"
-              :class="[!model ? 'text-gray-400' : 'text-black']"
+              class="block truncate capitalize text-base"
+              :class="[
+                errorMessage
+                  ? 'text-red-500'
+                  : !model
+                    ? 'text-gray-400'
+                    : 'text-black'
+              ]"
             >{{ !model ? props.placeholder : model }}</span>
 
             <span
               class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
             >
               <ChevronDownIcon
-                class="h-5 w-5 text-gray-400"
+                class="h-5 w-5"
+                :class="[errorMessage ? 'stroke-red-500' : 'stroke-gray-400']"
                 aria-hidden="true"
               />
             </span>
@@ -122,5 +143,7 @@ const props = withDefaults(
         </div>
       </Listbox>
     </div>
+
+    <p v-if="errorMessage" class="text-sm text-red-500">{{ errorMessage }}</p>
   </div>
 </template>

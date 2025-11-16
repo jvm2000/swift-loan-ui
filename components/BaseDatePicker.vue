@@ -36,6 +36,8 @@ function toggleCalendar() {
 function handleDateSelect(day: number, month: number, year: number) {
   model.value = new Date(year, month, day)
   showCalendar.value = false
+
+  errorMessage.value = ''
 }
 
 function handleClickOutside(event: MouseEvent) {
@@ -64,10 +66,6 @@ function formatDate(date: Date | null) {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
-function handleInput() {
-  errorMessage.value = ''
-}
-
 watch(() => props.error, (val) => (errorMessage.value = val))
 onMounted(() => document.addEventListener('mousedown', handleClickOutside))
 onBeforeUnmount(() => document.removeEventListener('mousedown', handleClickOutside))
@@ -90,11 +88,13 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', handleClickOutsi
           :placeholder="props.placeholder"
           :value="formatDate(model)"
           readonly
-          @input="handleInput"
           @click="toggleCalendar"
         />
 
-        <CalendarIcon class="w-5 h-5 absolute right-4 stroke-gray-400" />
+        <CalendarIcon 
+          class="w-5 h-5 absolute right-4"
+          :class="[errorMessage ? 'stroke-red-500' : 'stroke-gray-400']"
+        />
       </div>
 
       <div

@@ -10,6 +10,9 @@ const owneships: Owneship[] = [
   { name: 'Living with Relatives', value: 'living with relatives' }
 ]
 const { prevStep, nextStep } = useForm()
+const { primaryAddressForm } = useStepsForm()
+const errors = ref<{ [key: string]: string[] }>({})
+const loading = ref(false)
 const title = useState<string>('page-title')
 title.value = 'Primary Applicant - Address Information'
 
@@ -19,7 +22,31 @@ function backToPersonal() {
   prevStep()
 }
 
-function proceedToIdentification() {
+function validateAddressInfo() {
+  const data = primaryAddressForm.value
+
+  if (!data.home_address?.trim()) errors.value.home_address = ["Home address is required"]
+
+  if (!data.length_of_stay?.trim()) errors.value.length_of_stay = ["Length of stay is required"]
+
+  if (!data.ownership) errors.value.ownership = ["Ownership is required"]
+
+  if (!data.contact_number?.trim()) errors.value.contact_number = ["Contact number is required"]
+}
+
+async function proceedToIdentification() {
+  loading.value = true
+
+  errors.value = {}
+
+  await new Promise(resolve => setTimeout(resolve, 1000))
+    
+  validateAddressInfo()
+
+  loading.value = false
+
+  if (Object.keys(errors.value).length) return
+
   navigateTo('/identification')
 
   nextStep()
@@ -57,18 +84,14 @@ useHead({ title: 'Primary Applicant - Address' })
   </div>
 
   <div class="flex items-center w-full justify-between">
-    <button 
-      class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center"
+    <BaseButton
+      is-secondary
       @click="backToPersonal"
-    >
-      <span class="text-gray-400 text-sm">Previous</span>
-    </button>
+    >Previous</BaseButton>
 
-    <button 
-      class="px-4 py-2 bg-blue-500 rounded-lg text-center"
+    <BaseButton
+      :is-loading="loading"
       @click="proceedToIdentification"
-    >
-      <span class="text-white text-sm">Next</span>
-    </button>
+    >Next</BaseButton>
   </div>
 </template>

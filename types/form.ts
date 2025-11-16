@@ -5,3 +5,10 @@ export type PrimaryAppPersonalInfo = {
   birthday: string,
   gender: string
 }
+
+export type PrimaryAppAddressInfo = {
+  home_address: string,
+  length_of_stay: string,
+  ownership: string,
+  contact_number: string
+}
