@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useGoogleSheet } from '~/composables/useGoogleSheet'
-
 type Gender = {
   name: string,
   value: string
@@ -13,7 +11,6 @@ const genders: Gender[] = [
 ]
 const { nextStep } = useForm()
 const { primaryPersonalInfoForm } = useStepsForm()
-const { submitForm, loading, error, success } = useGoogleSheet()
 const title = useState<string>('page-title')
 title.value = 'Primary Applicant - Personal Information'
 
@@ -21,12 +18,6 @@ async function proceedToAddress() {
   navigateTo('/address')
 
   nextStep()
-
-  handleSubmit()
-}
-
-function handleSubmit() {
-  submitForm(primaryPersonalInfoForm.value)
 }
 
 useHead({ title: 'Primary Applicant - Personal' })
