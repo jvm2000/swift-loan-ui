@@ -12,3 +12,9 @@ export type PrimaryAppAddressInfo = {
   ownership: string,
   contact_number: string
 }
+
+export type PrimaryAppIdentification = {
+  marital_status: string,
+  nationality: string,
+  valid_id_number: string
+}

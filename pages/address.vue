@@ -58,28 +58,36 @@ useHead({ title: 'Primary Applicant - Address' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
+      v-model="primaryAddressForm.home_address"
       label="Home Address"
       placeholder="Enter complete home address"
       required
+      :error="getError(errors, 'home_address')"
     />
 
     <BaseInput 
+      v-model="primaryAddressForm.length_of_stay"
       label="Length of Stay"
       placeholder="e.g. 5 years"
       required
+      :error="getError(errors, 'length_of_stay')"
     />
 
     <BaseSelect 
+      v-model="primaryAddressForm.ownership"
       label="Ownership"
       placeholder="Select ownership status"
       :options="owneships"
       required
+      :error="getError(errors, 'ownership')"
     />
 
     <BaseInput 
+      v-model="primaryAddressForm.contact_number"
       label="Contact Number"
       placeholder="e.g. +63 994 371 33992"
       required
+      :error="getError(errors, 'contact_number')"
     />
   </div>
 

@@ -1,4 +1,4 @@
-import type { PrimaryAppAddressInfo, PrimaryAppPersonalInfo } from "~/types/form"
+import type { PrimaryAppAddressInfo, PrimaryAppIdentification, PrimaryAppPersonalInfo } from "~/types/form"
 
 const primaryPersonalInfoForm = ref<PrimaryAppPersonalInfo>({
   first_name: '',
@@ -12,6 +12,11 @@ const primaryAddressForm = ref<PrimaryAppAddressInfo>({
   length_of_stay: '',
   ownership: '',
   contact_number: ''
+})
+const primaryIdentificationForm = ref<PrimaryAppIdentification>({
+  marital_status: '',
+  nationality: '',
+  valid_id_number: ''
 })
 
 export const useStepsForm = () => {   
@@ -34,6 +39,7 @@ export const useStepsForm = () => {
   return {
     primaryPersonalInfoForm,
     primaryAddressForm,
+    primaryIdentificationForm,
     submit
   }
 }
