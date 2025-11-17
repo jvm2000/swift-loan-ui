@@ -11,7 +11,8 @@ type DatePickerProps = {
   required?: boolean
 }
 
-const model = defineModel<any>({ required: false })
+const model = defineModel<string>({ required: false })
+
 const props = withDefaults(defineProps<DatePickerProps>(), {
   placeholder: 'Pick a date',
   error: '',
@@ -72,7 +73,8 @@ function selectYear(y: number) {
 }
 
 function handleDateSelect(day: number) {
-  model.value = new Date(year.value, month.value, day)
+  const monthName = months[month.value]
+  model.value = `${monthName} ${day}, ${year.value}` // store as string
   showCalendar.value = false
   showMonthPicker.value = false
   showYearPicker.value = false
@@ -102,11 +104,6 @@ function handleClickOutside(event: MouseEvent) {
   }
 }
 
-function formatDate(date: Date | null) {
-  if (!date) return ''
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-}
-
 onMounted(() => document.addEventListener('mousedown', handleClickOutside))
 onBeforeUnmount(() => document.removeEventListener('mousedown', handleClickOutside))
 watch(() => props.error, (val) => (errorMessage.value = val))
@@ -126,7 +123,7 @@ watch(() => props.error, (val) => (errorMessage.value = val))
         class="w-full rounded-md bg-gray-50 border px-3 py-2 text-base focus-visible:outline-none"
         :class="[errorMessage ? 'ring-1 ring-red-500' : '']"
         :placeholder="props.placeholder"
-        :value="formatDate(model)"
+        :value="model"
         readonly
         @click="toggleCalendar"
       />
@@ -201,11 +198,11 @@ watch(() => props.error, (val) => (errorMessage.value = val))
               @click="handleDateSelect(day)"
               class="p-2 rounded hover:bg-blue-100 text-sm"
               :class="{
-                'bg-blue-500 text-white':
-                  model &&
-                  model.getDate() === day &&
-                  model.getMonth() === month &&
-                  model.getFullYear() === year,
+                'bg-blue-500 text-white': (() => {
+                  if (!model.value) return false
+                  const [m, d, y] = model.value.replace(',', '').split(' ')
+                  return m === months[month] && Number(d) === day && Number(y) === year
+                })()
               }"
             >
               {{ day }}
