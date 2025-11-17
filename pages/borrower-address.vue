@@ -5,9 +5,9 @@ type Options = {
 }
 
 const owneships: Options[] = [
-  { name: 'Owned', value: 'owned' },
-  { name: 'Rented', value: 'rented' },
-  { name: 'Living with Relatives', value: 'living with relatives' }
+  { name: 'Owned', value: 'Owned' },
+  { name: 'Rented', value: 'Rented' },
+  { name: 'Living with Relatives', value: 'Living with relatives' }
 ]
 const { prevStep, nextStep } = useForm()
 const { coBorrowerAddressForm } = useStepsForm()

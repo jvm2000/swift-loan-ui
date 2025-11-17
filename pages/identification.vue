@@ -5,10 +5,10 @@ type MaritalStatus = {
 }
 
 const maritalStatuses: MaritalStatus[] = [
-  { name: 'Single', value: 'single' },
-  { name: 'Married', value: 'married' },
-  { name: 'Divorced', value: 'divorced' },
-  { name: 'Widowed', value: 'widowed' },
+  { name: 'Single', value: 'Single' },
+  { name: 'Married', value: 'Married' },
+  { name: 'Divorced', value: 'Divorced' },
+  { name: 'Widowed', value: 'Widowed' },
 ]
 const { prevStep, nextStep } = useForm()
 const { primaryIdentificationForm } = useStepsForm()

@@ -3,7 +3,7 @@ const { prevStep } = useForm()
 const { coBorrowerFamilyForm } = useStepsForm()
 const errors = ref<{ [key: string]: string[] }>({})
 const loading = ref(false)
-const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwAFYY6o2i-G1HqaUqhzzCp30z9zVsH4x7kBAkjfc3Qfj0vFrRZuW4-IWIZcSchpqH3/exec'
+const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzGjSarAxtDaW0dx5hFjm1ceZkm8ji0dqLymVSaYH3gDBzaUwLcyJ0j-kJN2GCf-RTl-g/exec'
 const title = useState<string>('page-title')
 title.value = 'Co-Borrower - Income Details'
 
@@ -20,6 +20,7 @@ function validateFamilyInfo() {
 }
 
 async function submit() {
+  const { generalForm } = useStepsForm()
   loading.value = true
   errors.value = {}
 
@@ -39,7 +40,7 @@ async function submit() {
       body: generalForm.value,
     })
   } catch (error) {
-    console.error('Error sending data to Google Sheet:', error);
+    console.error('Error sending data to Google Sheet:', error)
   }
 }
 

@@ -5,9 +5,9 @@ type Gender = {
 }
 
 const genders: Gender[] = [
-  { name: 'Male', value: 'male' },
-  { name: 'Female', value: 'female' },
-  { name: 'Others', value: 'others' }
+  { name: 'Male', value: 'Male' },
+  { name: 'Female', value: 'Female' },
+  { name: 'Others', value: 'Others' }
 ]
 const { nextStep } = useForm()
 const { primaryPersonalInfoForm } = useStepsForm()

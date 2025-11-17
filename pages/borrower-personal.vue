@@ -5,15 +5,15 @@ type Options = {
 }
 
 const genders: Options[] = [
-  { name: 'Male', value: 'male' },
-  { name: 'Female', value: 'female' },
-  { name: 'Others', value: 'others' }
+  { name: 'Male', value: 'Male' },
+  { name: 'Female', value: 'Female' },
+  { name: 'Others', value: 'Others' }
 ]
 const relationships: Options[] = [
-  { name: 'Parent', value: 'parent' },
-  { name: 'Spouse', value: 'spouse' },
-  { name: 'Sibling', value: 'sibling' },
-  { name: 'Common Law Partner', value: 'common law partner' },
+  { name: 'Parent', value: 'Parent' },
+  { name: 'Spouse', value: 'Spouse' },
+  { name: 'Sibling', value: 'Sibling' },
+  { name: 'Common Law Partner', value: 'Common law partner' },
 ]
 const { prevStep, nextStep } = useForm()
 const { coBorrowerPersonalInfoForm } = useStepsForm()
