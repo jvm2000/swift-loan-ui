@@ -33,8 +33,17 @@ const primaryFamilyForm = ref<Family>({
   mothers_maiden_name: '',
 })
 
+const primaryForm = computed(() => ({
+  ...primaryPersonalInfoForm.value,
+  ...primaryAddressForm.value,
+  ...primaryIdentificationForm.value,
+  ...primaryEmployeeForm.value,
+  ...primaryIncomeForm.value,
+  ...primaryFamilyForm.value,
+}))
+
 export const useStepsForm = () => {   
-  const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbw65zFEZTYbwyWfvViRHboquouvjNi8oJjWXb9Vp7wH_Gg25aUFM54ldJpA6dWpvL9-/exec'
+  const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwAFYY6o2i-G1HqaUqhzzCp30z9zVsH4x7kBAkjfc3Qfj0vFrRZuW4-IWIZcSchpqH3/exec'
 
   async function submit() {
     try {
@@ -43,7 +52,7 @@ export const useStepsForm = () => {
         headers: {
           'Content-Type': 'text/plain;charset=utf-8'
         },
-        body: primaryPersonalInfoForm.value,
+        body: primaryForm.value,
       })
     } catch (error) {
       console.error('Error sending data to Google Sheet:', error);
