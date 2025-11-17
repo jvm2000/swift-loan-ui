@@ -37,7 +37,8 @@ const coBorrowerPersonalInfoForm = ref<CoBorrowerPersonalInfo>({
   co_middle_name: '',
   co_last_name: '',
   co_birthday: '',
-  co_gender: ''
+  co_gender: '',
+  co_relationship_to_principal_borrower: ''
 })
 const coBorrowerAddressForm = ref<CoBorrowerAddressInfo>({
   co_home_address: '',

@@ -17,7 +17,7 @@ const title = useState<string>('page-title')
 title.value = 'Primary Applicant - Address Information'
 
 function backToPersonal() {
-  navigateTo('/')
+  navigateTo('/personal')
 
   prevStep()
 }

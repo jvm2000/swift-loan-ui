@@ -1,104 +1,71 @@
 <script setup lang="ts">
-type Gender = {
-  name: string,
-  value: string
-}
+import { ClockIcon, ShieldCheckIcon, ClipboardDocumentListIcon, CheckCircleIcon } from '@heroicons/vue/24/outline'
 
-const genders: Gender[] = [
-  { name: 'Male', value: 'Male' },
-  { name: 'Female', value: 'Female' },
-  { name: 'Others', value: 'Others' }
-]
-const { nextStep } = useForm()
-const { primaryPersonalInfoForm } = useStepsForm()
-const errors = ref<{ [key: string]: string[] }>({});
-const loading = ref(false)
-const title = useState<string>('page-title')
-title.value = 'Primary Applicant - Personal Information'
+definePageMeta({
+  layout: false,
+  title: ''
+})
 
-function validatePrimaryPersonalInfo() {
-  const data = primaryPersonalInfoForm.value
-
-  if (!data.first_name?.trim()) errors.value.first_name = ["First name is required"]
-
-  if (!data.last_name?.trim()) errors.value.last_name = ["Last name is required"]
-
-  if (!data.birthday) errors.value.birthday = ["Birthday is required"]
-
-  if (!data.gender) errors.value.gender = ["Gender is required"]
-}
-
-async function proceedToAddress() {
-  loading.value = true
-
-  errors.value = {}
-
-  await new Promise(resolve => setTimeout(resolve, 1000))
-    
-  validatePrimaryPersonalInfo()
-
-  loading.value = false
-
-  if (Object.keys(errors.value).length) return
-
-  navigateTo('/address')
-
-  nextStep()
-}
-
-useHead({ title: 'Primary Applicant - Personal' })
+useHead({ title: 'Welcome' })
 </script>
 
 <template>
-  <div class="space-y-4 pb-6 border-b border-gray-200">
-    <BaseInput 
-      v-model="primaryPersonalInfoForm.first_name"
-      label="First Name"
-      placeholder="Enter first name"
-      required
-      :error="getError(errors, 'first_name')"
-    />
+  <div class="px-6 md:px-12 lg:px-24 w-full">
+    <div class="py-12 flex">
+      <img src="/images/logo-carleads.png" class="h-10" />
+    </div>
 
-    <BaseInput 
-      v-model="primaryPersonalInfoForm.middle_name"
-      label="Middle Name"
-      placeholder="Enter middle name (optional)"
-    />
+    <div class="pt-12 pb-32 flex flex-col items-center w-full space-y-14 sm:xl:space-y-6">
+      <p class="text-7xl sm:text-8xl text-black font-bold capitalize">Get your car loan today</p>
 
-    <BaseInput 
-      v-model="primaryPersonalInfoForm.last_name"
-      label="Last Name"
-      placeholder="Enter last name"
-      required
-      :error="getError(errors, 'last_name')"
-    />
+      <p class="text-xl sm:text-3xl text-gray-500 sm:xl:text-center max-w-4xl">
+        Fast, secure and hassle-free car financing. Apply now and drive your dream car home.
+      </p>
 
-    <BaseDatePicker 
-      v-model="primaryPersonalInfoForm.birthday"
-      label="Birthday"
-      placeholder="Pick a date"
-      required
-      :error="getError(errors, 'birthday')"
-    />
+      <div class="sm:pt-4">
+        <button 
+          class="px-12 py-6  rounded-lg text-center text-xl sm:text-2xl bg-blue-500 text-white"
+          @click="navigateTo('/personal')"
+        >Start your Application</button>
+      </div>
+    </div>
 
-    <BaseSelect 
-      v-model="primaryPersonalInfoForm.gender"
-      label="Gender"
-      placeholder="Select Gender"
-      :options="genders"
-      required
-      :error="getError(errors, 'gender')"
-    />
-  </div>
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 sm:xl:grid-cols-4 pb-24 gap-8">
+      <div class="border border-gray-300 rounded-lg flex flex-col items-center p-8 space-y-3">
+        <ClockIcon class="stroke-blue-500 h-16 w-16" />
 
-  <div class="flex items-center w-full justify-between">
-    <BaseButton
-      is-secondary
-    >Previous</BaseButton>
+        <p class="text-2xl font-medium">Quick Process</p>
 
-    <BaseButton
-      :is-loading="loading"
-      @click="proceedToAddress"
-    >Next</BaseButton>
+        <p class="text-base text-gray-500 text-center">Complete your application in under 10 minutes</p>
+      </div>
+
+      <div class="border border-gray-300 rounded-lg flex flex-col items-center p-8 space-y-3">
+        <ShieldCheckIcon class="stroke-blue-500 h-16 w-16" />
+
+        <p class="text-2xl font-medium">Secure & Safe</p>
+
+        <p class="text-base text-gray-500 text-center">Your information is encrypted and protected</p>
+      </div>
+
+      <div class="border border-gray-300 rounded-lg flex flex-col items-center p-8 space-y-3">
+        <ClipboardDocumentListIcon class="stroke-blue-500 h-16 w-16" />
+
+        <p class="text-2xl font-medium">Simple Steps</p>
+
+        <p class="text-base text-gray-500 text-center">Easy-to-follow multi-step form with clear guidance</p>
+      </div>
+
+      <div class="border border-gray-300 rounded-lg flex flex-col items-center p-8 space-y-3">
+        <CheckCircleIcon class="stroke-blue-500 h-16 w-16" />
+
+        <p class="text-2xl font-medium">Fast Approval</p>
+
+        <p class="text-base text-gray-500 text-center">Get a decision quickly after submission</p>
+      </div>
+    </div>
+
+    <div class="w-full py-10 text-center border-t border-gray-300">
+      <p class="text-lg text-gray-400">© 2025 carLeads. All rights reserved.</p>
+    </div>
   </div>
 </template>
