@@ -15,7 +15,7 @@ function backToEmployment() {
 function validateIncomeInfo() {
   const data = coBorrowerIncomeForm.value
 
-  if (!data.monthly_income?.trim()) errors.value.monthly_income = ["Monthly income is required"]
+  if (!data.co_monthly_income?.trim()) errors.value.co_monthly_income = ["Monthly income is required"]
 }
 
 async function proceedToFamily() {
@@ -42,7 +42,7 @@ useHead({ title: 'Co-Borrower - Income' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput
-      v-model="coBorrowerIncomeForm.monthly_income"
+      v-model="coBorrowerIncomeForm.co_monthly_income"
       label="Monthly Income"
       placeholder="e.g., ₱50,000"
       required

@@ -23,6 +23,10 @@ function validateEmployeeInfo() {
 
   if (!data.company_contact_number?.trim()) errors.value.company_contact_number = ["Contact number is required"]
 
+  if (data.company_contact_number.length !== 11 && data.company_contact_number) errors.value.company_contact_number = ["Contact number must be 11 characters"]
+
+  if (!/^\d+$/.test(data.company_contact_number) && data.company_contact_number) errors.value.company_contact_number = ["Contact number must be a number"]
+
   if (!data.years_of_service?.trim()) errors.value.years_of_service = ["Years of service is required"]
 }
 

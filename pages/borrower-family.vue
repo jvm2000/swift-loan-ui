@@ -16,7 +16,7 @@ function backToIncome() {
 function validateFamilyInfo() {
   const data = coBorrowerFamilyForm.value
 
-  if (!data.mothers_maiden_name?.trim()) errors.value.mothers_maiden_name = ["Mother's Maiden Name is required"]
+  if (!data.co_mothers_maiden_name?.trim()) errors.value.co_mothers_maiden_name = ["Mother's Maiden Name is required"]
 }
 
 async function submit() {
@@ -28,7 +28,6 @@ async function submit() {
     
   validateFamilyInfo()
 
-  loading.value = false
   if (Object.keys(errors.value).length) return
 
   try {
@@ -41,6 +40,8 @@ async function submit() {
     })
   } catch (error) {
     console.error('Error sending data to Google Sheet:', error)
+  } finally {
+    loading.value = false
   }
 }
 
@@ -50,7 +51,7 @@ useHead({ title: 'Co-Borrower - Family' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
-      v-model="coBorrowerFamilyForm.mothers_maiden_name"
+      v-model="coBorrowerFamilyForm.co_mothers_maiden_name"
       label="Mother's Maiden Name"
       placeholder="Enter mother's maiden name"
       required

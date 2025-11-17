@@ -26,11 +26,11 @@ function backToAddress() {
 function validateIdentificationInfo() {
   const data = coBorrowerIdentificationForm.value
 
-  if (!data.marital_status) errors.value.marital_status = ["Marital status is required"]
+  if (!data.co_marital_status) errors.value.co_marital_status = ["Marital status is required"]
 
-  if (!data.nationality?.trim()) errors.value.nationality = ["Nationality is required"]
+  if (!data.co_nationality?.trim()) errors.value.co_nationality = ["Nationality is required"]
 
-  if (!data.valid_id_number?.trim()) errors.value.valid_id_number = ["TIN / SSS/ GSIS number is required"]
+  if (!data.co_valid_id_number?.trim()) errors.value.co_valid_id_number = ["TIN / SSS/ GSIS number is required"]
 }
 
 
@@ -58,7 +58,7 @@ useHead({ title: 'Co-Borrower - Identification' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseSelect 
-      v-model="coBorrowerIdentificationForm.marital_status"
+      v-model="coBorrowerIdentificationForm.co_marital_status"
       label="Marital Status"
       placeholder="Select marital status"
       :options="maritalStatuses"
@@ -67,7 +67,7 @@ useHead({ title: 'Co-Borrower - Identification' })
     />
 
     <BaseInput 
-      v-model="coBorrowerIdentificationForm.nationality"
+      v-model="coBorrowerIdentificationForm.co_nationality"
       label="Nationality"
       placeholder="e.g. Filipino"
       required
@@ -75,7 +75,7 @@ useHead({ title: 'Co-Borrower - Identification' })
     />
 
     <BaseInput 
-      v-model="coBorrowerIdentificationForm.valid_id_number"
+      v-model="coBorrowerIdentificationForm.co_valid_id_number"
       label="TIN / SSS / GSIS Number"
       placeholder="Enter TIN, SSS, or GSIS number"
       required

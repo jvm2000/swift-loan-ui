@@ -1,4 +1,4 @@
-import type { AddressInfo, Employee, Family, Identification, Income, PersonalInfo } from "~/types/form"
+import type { AddressInfo, CoBorrowerAddressInfo, CoBorrowerEmployee, CoBorrowerFamily, CoBorrowerIdentification, CoBorrowerIncome, CoBorrowerPersonalInfo, Employee, Family, Identification, Income, PersonalInfo } from "~/types/form"
 
 const primaryPersonalInfoForm = ref<PersonalInfo>({
   first_name: '',
@@ -32,38 +32,38 @@ const primaryIncomeForm = ref<Income>({
 const primaryFamilyForm = ref<Family>({
   mothers_maiden_name: '',
 })
-const coBorrowerPersonalInfoForm = ref<PersonalInfo>({
-  first_name: '',
-  middle_name: '',
-  last_name: '',
-  birthday: '',
-  gender: ''
+const coBorrowerPersonalInfoForm = ref<CoBorrowerPersonalInfo>({
+  co_first_name: '',
+  co_middle_name: '',
+  co_last_name: '',
+  co_birthday: '',
+  co_gender: ''
 })
-const coBorrowerAddressForm = ref<AddressInfo>({
-  home_address: '',
-  length_of_stay: '',
-  ownership: '',
-  contact_number: '',
-  landline_number: ''
+const coBorrowerAddressForm = ref<CoBorrowerAddressInfo>({
+  co_home_address: '',
+  co_length_of_stay: '',
+  co_ownership: '',
+  co_contact_number: '',
+  co_landline_number: ''
 })
-const coBorrowerIdentificationForm = ref<Identification>({
-  marital_status: '',
-  nationality: '',
-  valid_id_number: ''
+const coBorrowerIdentificationForm = ref<CoBorrowerIdentification>({
+  co_marital_status: '',
+  co_nationality: '',
+  co_valid_id_number: ''
 })
-const coBorrowerEmployeeForm = ref<Employee>({
-  company_name: '',
-  position: '',
-  company_address: '',
-  company_contact_number: '',
-  years_of_service: ''
+const coBorrowerEmployeeForm = ref<CoBorrowerEmployee>({
+  co_company_name: '',
+  co_position: '',
+  co_company_address: '',
+  co_company_contact_number: '',
+  co_years_of_service: ''
 })
-const coBorrowerIncomeForm = ref<Income>({
-  monthly_income: '',
-  other_icome: '',
+const coBorrowerIncomeForm = ref<CoBorrowerIncome>({
+  co_monthly_income: '',
+  co_other_icome: '',
 })
-const coBorrowerFamilyForm = ref<Family>({
-  mothers_maiden_name: '',
+const coBorrowerFamilyForm = ref<CoBorrowerFamily>({
+  co_mothers_maiden_name: '',
 })
 
 const generalForm = computed(() => ({

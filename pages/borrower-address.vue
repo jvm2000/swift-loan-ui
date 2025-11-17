@@ -25,15 +25,19 @@ function backToPersonal() {
 function validateAddressInfo() {
   const data = coBorrowerAddressForm.value
 
-  if (!data.home_address?.trim()) errors.value.home_address = ["Home address is required"]
+  if (!data.co_home_address?.trim()) errors.value.co_home_address = ["Home address is required"]
 
-  if (!data.length_of_stay?.trim()) errors.value.length_of_stay = ["Length of stay is required"]
+  if (!data.co_length_of_stay?.trim()) errors.value.co_length_of_stay = ["Length of stay is required"]
 
-  if (!data.ownership) errors.value.ownership = ["Ownership is required"]
+  if (!data.co_ownership) errors.value.co_ownership = ["Ownership is required"]
 
-  if (!data.contact_number?.trim()) errors.value.contact_number = ["Contact number is required"]
+  if (!data.co_contact_number?.trim()) errors.value.co_contact_number = ["Contact number is required"]
 
-  if (!data.landline_number?.trim()) errors.value.landline_number = ["Contact number is required"]
+  if (data.co_contact_number.length !== 11) errors.value.co_contact_number = ["Contact number must be 11 characters"]
+
+  if (!/^\d+$/.test(data.co_contact_number)) errors.value.co_contact_number = ["Contact number must be a number"]
+
+  if (data.co_landline_number && !/^\d+$/.test(data.co_landline_number)) errors.value.co_landline_number = ["Landline number must be a number"]
 }
 
 async function proceedToIdentification() {
@@ -60,7 +64,7 @@ useHead({ title: 'Co-Borrower - Address' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
-      v-model="coBorrowerAddressForm.home_address"
+      v-model="coBorrowerAddressForm.co_home_address"
       label="Home Address"
       placeholder="Enter complete home address"
       required
@@ -68,7 +72,7 @@ useHead({ title: 'Co-Borrower - Address' })
     />
 
     <BaseInput 
-      v-model="coBorrowerAddressForm.length_of_stay"
+      v-model="coBorrowerAddressForm.co_length_of_stay"
       label="Length of Stay"
       placeholder="e.g. 5 years"
       required
@@ -76,7 +80,7 @@ useHead({ title: 'Co-Borrower - Address' })
     />
 
     <BaseSelect 
-      v-model="coBorrowerAddressForm.ownership"
+      v-model="coBorrowerAddressForm.co_ownership"
       label="Ownership"
       placeholder="Select ownership status"
       :options="owneships"
@@ -85,7 +89,7 @@ useHead({ title: 'Co-Borrower - Address' })
     />
 
     <BaseInput 
-      v-model="coBorrowerAddressForm.contact_number"
+      v-model="coBorrowerAddressForm.co_contact_number"
       label="Contact Number"
       placeholder="e.g. +63 994 371 33992"
       required
@@ -93,7 +97,7 @@ useHead({ title: 'Co-Borrower - Address' })
     />
 
     <BaseInput 
-      v-model="coBorrowerAddressForm.landline_number"
+      v-model="coBorrowerAddressForm.co_landline_number"
       label="Landline Number"
       placeholder="e.g. (02) 1234 5678 (optional)"
       :error="getError(errors, 'landline_number')"

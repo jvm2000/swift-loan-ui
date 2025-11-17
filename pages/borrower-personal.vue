@@ -31,15 +31,15 @@ function backToFamily() {
 function validatePrimaryPersonalInfo() {
   const data = coBorrowerPersonalInfoForm.value
 
-  if (!data.first_name?.trim()) errors.value.first_name = ["First name is required"]
+  if (!data.co_first_name?.trim()) errors.value.co_first_name = ["First name is required"]
 
-  if (!data.last_name?.trim()) errors.value.last_name = ["Last name is required"]
+  if (!data.co_last_name?.trim()) errors.value.co_last_name = ["Last name is required"]
 
-  if (!data.birthday) errors.value.birthday = ["Birthday is required"]
+  if (!data.co_birthday) errors.value.co_birthday = ["Birthday is required"]
 
-  if (!data.gender) errors.value.gender = ["Gender is required"]
+  if (!data.co_gender) errors.value.co_gender = ["Gender is required"]
 
-  if (!data.relationship_to_principal_borrower) errors.value.relationship_to_principal_borrower = ["Relationship to principal borrower is required"]
+  if (!data.co_relationship_to_principal_borrower) errors.value.co_relationship_to_principal_borrower = ["Relationship to principal borrower is required"]
 }
 
 async function proceedToAddress() {
@@ -66,7 +66,7 @@ useHead({ title: 'Co-Borrower - Personal' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
-      v-model="coBorrowerPersonalInfoForm.first_name"
+      v-model="coBorrowerPersonalInfoForm.co_first_name"
       label="First Name"
       placeholder="Enter first name"
       required
@@ -74,13 +74,13 @@ useHead({ title: 'Co-Borrower - Personal' })
     />
 
     <BaseInput 
-      v-model="coBorrowerPersonalInfoForm.middle_name"
+      v-model="coBorrowerPersonalInfoForm.co_middle_name"
       label="Middle Name"
       placeholder="Enter middle name (optional)"
     />
 
     <BaseInput 
-      v-model="coBorrowerPersonalInfoForm.last_name"
+      v-model="coBorrowerPersonalInfoForm.co_last_name"
       label="Last Name"
       placeholder="Enter last name"
       required
@@ -88,7 +88,7 @@ useHead({ title: 'Co-Borrower - Personal' })
     />
 
     <BaseDatePicker 
-      v-model="coBorrowerPersonalInfoForm.birthday"
+      v-model="coBorrowerPersonalInfoForm.co_birthday"
       label="Birthday"
       placeholder="Pick a date"
       required
@@ -96,7 +96,7 @@ useHead({ title: 'Co-Borrower - Personal' })
     />
 
     <BaseSelect 
-      v-model="coBorrowerPersonalInfoForm.gender"
+      v-model="coBorrowerPersonalInfoForm.co_gender"
       label="Gender"
       placeholder="Select Gender"
       :options="genders"
@@ -105,7 +105,7 @@ useHead({ title: 'Co-Borrower - Personal' })
     />
 
     <BaseSelect 
-      v-model="coBorrowerPersonalInfoForm.relationship_to_principal_borrower"
+      v-model="coBorrowerPersonalInfoForm.co_relationship_to_principal_borrower"
       label="Relationship to Principal Burrower"
       placeholder="Select Relationship"
       :options="relationships"

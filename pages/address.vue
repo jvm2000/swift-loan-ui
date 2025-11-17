@@ -32,6 +32,10 @@ function validateAddressInfo() {
   if (!data.ownership) errors.value.ownership = ["Ownership is required"]
 
   if (!data.contact_number?.trim()) errors.value.contact_number = ["Contact number is required"]
+
+  if (data.contact_number.length !== 11) errors.value.contact_number = ["Contact number must be 11 characters"]
+
+  if (!/^\d+$/.test(data.contact_number)) errors.value.contact_number = ["Contact number must be a number"]
 }
 
 async function proceedToIdentification() {
