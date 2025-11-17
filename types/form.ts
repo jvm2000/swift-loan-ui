@@ -26,3 +26,8 @@ export type Employee = {
   company_contact_number: string,
   years_of_service: string
 }
+
+export type Income = {
+  monthly_income: string,
+  other_icome: string,
+}

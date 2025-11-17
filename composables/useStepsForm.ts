@@ -1,4 +1,4 @@
-import type { AddressInfo, Employee, Identification, PersonalInfo } from "~/types/form"
+import type { AddressInfo, Employee, Identification, Income, PersonalInfo } from "~/types/form"
 
 const primaryPersonalInfoForm = ref<PersonalInfo>({
   first_name: '',
@@ -25,6 +25,10 @@ const primaryEmployeeForm = ref<Employee>({
   company_contact_number: '',
   years_of_service: ''
 })
+const primaryIncomeForm = ref<Income>({
+  monthly_income: '',
+  other_icome: '',
+})
 
 export const useStepsForm = () => {   
   const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbw65zFEZTYbwyWfvViRHboquouvjNi8oJjWXb9Vp7wH_Gg25aUFM54ldJpA6dWpvL9-/exec'
@@ -48,6 +52,7 @@ export const useStepsForm = () => {
     primaryAddressForm,
     primaryIdentificationForm,
     primaryEmployeeForm,
+    primaryIncomeForm,
     submit
   }
 }

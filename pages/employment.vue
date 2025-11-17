@@ -6,8 +6,8 @@ const loading = ref(false)
 const title = useState<string>('page-title')
 title.value = 'Primary Applicant - Employment Information'
 
-function backToEmployment() {
-  navigateTo('/employment')
+function backToIdentification() {
+  navigateTo('/Identification')
 
   prevStep()
 }
@@ -24,7 +24,6 @@ function validateEmployeeInfo() {
   if (!data.company_contact_number?.trim()) errors.value.company_contact_number = ["Contact number is required"]
 
   if (!data.years_of_service?.trim()) errors.value.years_of_service = ["Years of service is required"]
-
 }
 
 async function proceedToIncome() {
@@ -94,7 +93,7 @@ useHead({ title: 'Primary Applicant - Employment' })
   <div class="flex items-center w-full justify-between">
     <BaseButton
       is-secondary
-      @click="backToEmployment"
+      @click="backToIdentification"
     >Previous</BaseButton>
 
     <BaseButton
