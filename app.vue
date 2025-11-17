@@ -1,23 +1,16 @@
 <script setup lang="ts">
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} · Swift Loan UI` : 'Swift Loan UI'
+    return titleChunk ? `${titleChunk} · CarLeads PH` : 'CarLeads PH'
   },
-  link: [{ rel: 'icon', type: "image/x-icon", href: '/icons/favicon.png' }]
+  link: [{ rel: 'icon', type: "image/x-icon", href: '/icons/favicon.ico' }]
 })
 </script>
 
 <template>
-  <div class="web">
+  <div>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
-
-<style scoped>
-.web {
-  background-color: #f6f8f8;
-  min-height: 100vh;
-}
-</style>
