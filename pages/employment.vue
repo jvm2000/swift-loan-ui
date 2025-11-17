@@ -55,6 +55,7 @@ useHead({ title: 'Primary Applicant - Employment' })
       label="Company Name"
       placeholder="Enter company name"
       required
+      :error="getError(errors, 'company_name')"
     />
 
     <BaseInput 
@@ -62,6 +63,7 @@ useHead({ title: 'Primary Applicant - Employment' })
       label="Position"
       placeholder="Enter your position"
       required
+      :error="getError(errors, 'position')"
     />
 
     <BaseInput 
@@ -69,6 +71,7 @@ useHead({ title: 'Primary Applicant - Employment' })
       label="Company Address"
       placeholder="Enter complete company address"
       required
+      :error="getError(errors, 'company_address')"
     />
 
     <BaseInput 
@@ -76,6 +79,7 @@ useHead({ title: 'Primary Applicant - Employment' })
       label="Company's Contact Number"
       placeholder="Enter company contact number"
       required
+      :error="getError(errors, 'company_contact_number')"
     />
 
     <BaseInput 
@@ -83,6 +87,7 @@ useHead({ title: 'Primary Applicant - Employment' })
       label="Years of Service"
       placeholder="e. g. 3 years"
       required
+      :error="getError(errors, 'years_of_service')"
     />
   </div>
 
