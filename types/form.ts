@@ -31,3 +31,7 @@ export type Income = {
   monthly_income: string,
   other_icome: string,
 }
+
+export type Family = {
+  mothers_maiden_name: string,
+}

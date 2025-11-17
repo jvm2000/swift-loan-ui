@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const { prevStep, nextStep } = useForm()
+const { primaryFamilyForm } = useStepsForm()
+const errors = ref<{ [key: string]: string[] }>({})
+const loading = ref(false)
 const title = useState<string>('page-title')
 title.value = 'Primary Applicant - Family Information'
 
@@ -9,7 +12,25 @@ function backToIncome() {
   prevStep()
 }
 
-function proceedToPersonalCoBurrower() {
+function validateFamilyInfo() {
+  const data = primaryFamilyForm.value
+
+  if (!data.mothers_maiden_name?.trim()) errors.value.mothers_maiden_name = ["Mother's Maiden Name is required"]
+}
+
+async function proceedToPersonalCoBurrower() {
+  loading.value = true
+
+  errors.value = {}
+
+  await new Promise(resolve => setTimeout(resolve, 1000))
+    
+  validateFamilyInfo()
+
+  loading.value = false
+
+  if (Object.keys(errors.value).length) return
+
   navigateTo('/borrower-personal')
 
   nextStep()
@@ -21,25 +42,23 @@ useHead({ title: 'Primary Applicant - Family' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
+      v-model="primaryFamilyForm.mothers_maiden_name"
       label="Mother's Maiden Name"
       placeholder="Enter mother's maiden name"
       required
+      :error="getError(errors, 'mothers_maiden_name')"
     />
   </div>
 
   <div class="flex items-center w-full justify-between">
-    <button 
-      class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center"
-      @click= "backToIncome"
-    >
-      <span class="text-gray-400 text-sm">Previous</span>
-    </button>
+    <BaseButton
+      is-secondary
+      @click="backToIncome"
+    >Previous</BaseButton>
 
-    <button 
-      class="px-4 py-2 bg-blue-500 rounded-lg text-center"
+    <BaseButton
+      :is-loading="loading"
       @click="proceedToPersonalCoBurrower"
-    >
-      <span class="text-white text-sm">Next</span>
-    </button>
+    >Next</BaseButton>
   </div>
 </template>
