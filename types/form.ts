@@ -11,7 +11,8 @@ export type AddressInfo = {
   home_address: string,
   length_of_stay: string,
   ownership: string,
-  contact_number: string
+  contact_number: string,
+  landline_number?: string
 }
 
 export type Identification = {

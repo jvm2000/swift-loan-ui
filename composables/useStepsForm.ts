@@ -43,7 +43,8 @@ const coBorrowerAddressForm = ref<AddressInfo>({
   home_address: '',
   length_of_stay: '',
   ownership: '',
-  contact_number: ''
+  contact_number: '',
+  landline_number: ''
 })
 const coBorrowerIdentificationForm = ref<Identification>({
   marital_status: '',
