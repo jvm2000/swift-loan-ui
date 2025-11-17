@@ -16,6 +16,9 @@ const relationships: Options[] = [
   { name: 'Common Law Partner', value: 'common law partner' },
 ]
 const { prevStep, nextStep } = useForm()
+const { coBorrowerPersonalInfoForm } = useStepsForm()
+const errors = ref<{ [key: string]: string[] }>({});
+const loading = ref(false)
 const title = useState<string>('page-title')
 title.value = 'Co-Borrower - Personal Information'
 
@@ -25,7 +28,33 @@ function backToFamily() {
   prevStep()
 }
 
-function proceedToAddress() {
+function validatePrimaryPersonalInfo() {
+  const data = coBorrowerPersonalInfoForm.value
+
+  if (!data.first_name?.trim()) errors.value.first_name = ["First name is required"]
+
+  if (!data.last_name?.trim()) errors.value.last_name = ["Last name is required"]
+
+  if (!data.birthday) errors.value.birthday = ["Birthday is required"]
+
+  if (!data.gender) errors.value.gender = ["Gender is required"]
+
+  if (!data.relationship_to_principal_borrower) errors.value.relationship_to_principal_borrower = ["Relationship to principal borrower is required"]
+}
+
+async function proceedToAddress() {
+  loading.value = true
+
+  errors.value = {}
+
+  await new Promise(resolve => setTimeout(resolve, 1000))
+    
+  validatePrimaryPersonalInfo()
+
+  loading.value = false
+
+  if (Object.keys(errors.value).length) return
+
   navigateTo('/borrower-address')
 
   nextStep()
@@ -37,53 +66,63 @@ useHead({ title: 'Co-Borrower - Personal' })
 <template>
   <div class="space-y-4 pb-6 border-b border-gray-200">
     <BaseInput 
+      v-model="coBorrowerPersonalInfoForm.first_name"
       label="First Name"
       placeholder="Enter first name"
       required
+      :error="getError(errors, 'first_name')"
     />
 
     <BaseInput 
+      v-model="coBorrowerPersonalInfoForm.middle_name"
       label="Middle Name"
       placeholder="Enter middle name (optional)"
     />
 
     <BaseInput 
+      v-model="coBorrowerPersonalInfoForm.last_name"
       label="Last Name"
       placeholder="Enter last name"
       required
+      :error="getError(errors, 'last_name')"
     />
 
     <BaseDatePicker 
+      v-model="coBorrowerPersonalInfoForm.birthday"
       label="Birthday"
       placeholder="Pick a date"
       required
+      :error="getError(errors, 'birthday')"
     />
 
     <BaseSelect 
+      v-model="coBorrowerPersonalInfoForm.gender"
       label="Gender"
       placeholder="Select Gender"
       :options="genders"
       required
+      :error="getError(errors, 'gender')"
     />
 
     <BaseSelect 
+      v-model="coBorrowerPersonalInfoForm.relationship_to_principal_borrower"
       label="Relationship to Principal Burrower"
       placeholder="Select Relationship"
       :options="relationships"
       required
+      :error="getError(errors, 'relationship_to_principal_borrower')"
     />
   </div>
 
   <div class="flex items-center w-full justify-between">
-    <button 
-      class="px-4 py-2 bg-gray-50 border border-gray-50 rounded-lg text-center"
+    <BaseButton
+      is-secondary
       @click="backToFamily"
-    >
-      <span class="text-gray-400 text-sm">Previous</span>
-    </button>
+    >Previous</BaseButton>
 
-    <button class="px-4 py-2 bg-blue-500 rounded-lg text-center" @click="proceedToAddress">
-      <span class="text-white text-sm">Next</span>
-    </button>
+    <BaseButton
+      :is-loading="loading"
+      @click="proceedToAddress"
+    >Next</BaseButton>
   </div>
 </template>

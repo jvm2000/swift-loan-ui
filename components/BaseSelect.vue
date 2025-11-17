@@ -69,7 +69,11 @@ function handleSelect() {
 
 <template>
   <div class="flex flex-col space-y-2.5">
-    <label :for="props.id" class="text-sm text-black font-medium">
+    <label 
+      :for="props.id" 
+      class="text-sm text-black font-medium"
+      :class="[errorMessage ? 'text-red-500' : '']"
+    >
       {{ props.label }} <span v-if="props.required" class="text-red-500">*</span>
     </label>
 

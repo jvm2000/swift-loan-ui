@@ -3,7 +3,8 @@ export type PersonalInfo = {
   middle_name?: string,
   last_name: string,
   birthday: string,
-  gender: string
+  gender: string,
+  relationship_to_principal_borrower?: string
 }
 
 export type AddressInfo = {

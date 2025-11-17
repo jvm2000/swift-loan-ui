@@ -32,6 +32,38 @@ const primaryIncomeForm = ref<Income>({
 const primaryFamilyForm = ref<Family>({
   mothers_maiden_name: '',
 })
+const coBorrowerPersonalInfoForm = ref<PersonalInfo>({
+  first_name: '',
+  middle_name: '',
+  last_name: '',
+  birthday: '',
+  gender: ''
+})
+const coBorrowerAddressForm = ref<AddressInfo>({
+  home_address: '',
+  length_of_stay: '',
+  ownership: '',
+  contact_number: ''
+})
+const coBorrowerIdentificationForm = ref<Identification>({
+  marital_status: '',
+  nationality: '',
+  valid_id_number: ''
+})
+const coBorrowerEmployeeForm = ref<Employee>({
+  company_name: '',
+  position: '',
+  company_address: '',
+  company_contact_number: '',
+  years_of_service: ''
+})
+const coBorrowerIncomeForm = ref<Income>({
+  monthly_income: '',
+  other_icome: '',
+})
+const coBorrowerFamilyForm = ref<Family>({
+  mothers_maiden_name: '',
+})
 
 const primaryForm = computed(() => ({
   ...primaryPersonalInfoForm.value,
@@ -66,6 +98,12 @@ export const useStepsForm = () => {
     primaryEmployeeForm,
     primaryIncomeForm,
     primaryFamilyForm,
+    coBorrowerPersonalInfoForm,
+    coBorrowerAddressForm,
+    coBorrowerIdentificationForm,
+    coBorrowerEmployeeForm,
+    coBorrowerIncomeForm,
+    coBorrowerFamilyForm,
     submit
   }
 }
