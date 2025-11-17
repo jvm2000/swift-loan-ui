@@ -32,6 +32,8 @@ function validateAddressInfo() {
   if (!data.ownership) errors.value.ownership = ["Ownership is required"]
 
   if (!data.contact_number?.trim()) errors.value.contact_number = ["Contact number is required"]
+
+  if (!data.landline_number?.trim()) errors.value.landline_number = ["Contact number is required"]
 }
 
 async function proceedToIdentification() {
