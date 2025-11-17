@@ -66,32 +66,22 @@ const coBorrowerFamilyForm = ref<Family>({
   mothers_maiden_name: '',
 })
 
-const primaryForm = computed(() => ({
+const generalForm = computed(() => ({
   ...primaryPersonalInfoForm.value,
   ...primaryAddressForm.value,
   ...primaryIdentificationForm.value,
   ...primaryEmployeeForm.value,
   ...primaryIncomeForm.value,
   ...primaryFamilyForm.value,
+  ...coBorrowerPersonalInfoForm.value,
+  ...coBorrowerAddressForm.value,
+  ...coBorrowerIdentificationForm.value,
+  ...coBorrowerEmployeeForm.value,
+  ...coBorrowerIncomeForm.value,
+  ...coBorrowerFamilyForm.value
 }))
 
 export const useStepsForm = () => {   
-  const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwAFYY6o2i-G1HqaUqhzzCp30z9zVsH4x7kBAkjfc3Qfj0vFrRZuW4-IWIZcSchpqH3/exec'
-
-  async function submit() {
-    try {
-      await useFetch(googleScriptUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
-        body: primaryForm.value,
-      })
-    } catch (error) {
-      console.error('Error sending data to Google Sheet:', error);
-    }
-  }
-
   return {
     primaryPersonalInfoForm,
     primaryAddressForm,
@@ -105,6 +95,6 @@ export const useStepsForm = () => {
     coBorrowerEmployeeForm,
     coBorrowerIncomeForm,
     coBorrowerFamilyForm,
-    submit
+    generalForm
   }
 }

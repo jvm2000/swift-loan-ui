@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { prevStep, nextStep } = useForm()
-const { primaryFamilyForm, submit } = useStepsForm()
+const { primaryFamilyForm } = useStepsForm()
 const errors = ref<{ [key: string]: string[] }>({})
 const loading = ref(false)
 const title = useState<string>('page-title')
@@ -34,8 +34,6 @@ async function proceedToPersonalCoBurrower() {
   navigateTo('/borrower-personal')
 
   nextStep()
-
-  await submit()
 }
 
 useHead({ title: 'Primary Applicant - Family' })

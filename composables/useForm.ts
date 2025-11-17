@@ -11,9 +11,10 @@ const stepMap: Record<any, number> = {
   coMaker: 10,
   summary: 11,
   confirmation: 12,
+  final: 13,
 }
 const currentStep = ref<number>(1)
-const totalSteps = 12
+const totalSteps = 13
 
 export const useForm = () => {
   function setStep(step: number) {
