@@ -1,4 +1,4 @@
-import type { AddressInfo, Identification, PersonalInfo } from "~/types/form"
+import type { AddressInfo, Employee, Identification, PersonalInfo } from "~/types/form"
 
 const primaryPersonalInfoForm = ref<PersonalInfo>({
   first_name: '',
@@ -17,6 +17,13 @@ const primaryIdentificationForm = ref<Identification>({
   marital_status: '',
   nationality: '',
   valid_id_number: ''
+})
+const primaryEmployeeForm = ref<Employee>({
+  company_name: '',
+  position: '',
+  company_address: '',
+  company_contact_number: '',
+  years_of_service: ''
 })
 
 export const useStepsForm = () => {   
@@ -40,6 +47,7 @@ export const useStepsForm = () => {
     primaryPersonalInfoForm,
     primaryAddressForm,
     primaryIdentificationForm,
+    primaryEmployeeForm,
     submit
   }
 }

@@ -21,6 +21,8 @@ export type Identification = {
 
 export type Employee = {
   company_name: string,
-  nationality: string,
-  valid_id_number: string
+  position: string,
+  company_address: string,
+  company_contact_number: string,
+  years_of_service: string
 }
