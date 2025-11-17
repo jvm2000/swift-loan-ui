@@ -53,7 +53,6 @@ useHead({ title: 'Primary Applicant - Income' })
       v-model="primaryIncomeForm.other_icome"
       label="Other Income (Sideline)"
       placeholder="e.g., ₱10,000 (optional)"
-      :error="getError(errors, 'other_icome')"
     />
   </div>
 
