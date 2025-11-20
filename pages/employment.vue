@@ -23,9 +23,11 @@ function validateEmployeeInfo() {
 
   if (!data.company_contact_number?.trim()) errors.value.company_contact_number = ["Contact number is required"]
 
-  if (data.company_contact_number.length !== 11 && data.company_contact_number) errors.value.company_contact_number = ["Contact number must be 11 characters"]
+  if (data.company_contact_number.length !== 7 && data.company_contact_number) errors.value.company_contact_number = ["Contact number must be 7 characters"]
 
   if (!/^\d+$/.test(data.company_contact_number) && data.company_contact_number) errors.value.company_contact_number = ["Contact number must be a number"]
+
+  if (!data.company_hr_email?.trim()) errors.value.company_hr_email = ["Company HR email is required"]
 
   if (!data.years_of_service?.trim()) errors.value.years_of_service = ["Years of service is required"]
 }
@@ -83,6 +85,14 @@ useHead({ title: 'Primary Applicant - Employment' })
       placeholder="Enter company contact number"
       required
       :error="getError(errors, 'company_contact_number')"
+    />
+
+    <BaseInput 
+      v-model="primaryEmployeeForm.company_hr_email"
+      label="Company's HR Email"
+      placeholder="Enter company HR email"
+      required
+      :error="getError(errors, 'company_hr_email')"
     />
 
     <BaseInput 

@@ -23,7 +23,8 @@ const primaryEmployeeForm = ref<Employee>({
   position: '',
   company_address: '',
   company_contact_number: '',
-  years_of_service: ''
+  years_of_service: '',
+  company_hr_email: ''
 })
 const primaryIncomeForm = ref<Income>({
   monthly_income: '',
@@ -57,7 +58,8 @@ const coBorrowerEmployeeForm = ref<CoBorrowerEmployee>({
   co_position: '',
   co_company_address: '',
   co_company_contact_number: '',
-  co_years_of_service: ''
+  co_years_of_service: '',
+  co_company_hr_email: ''
 })
 const coBorrowerIncomeForm = ref<CoBorrowerIncome>({
   co_monthly_income: '',

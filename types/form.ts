@@ -26,7 +26,8 @@ export type Employee = {
   position: string,
   company_address: string,
   company_contact_number: string,
-  years_of_service: string
+  years_of_service: string,
+  company_hr_email: string
 }
 
 export type Income = {
@@ -66,7 +67,8 @@ export type CoBorrowerEmployee = {
   co_position: string,
   co_company_address: string,
   co_company_contact_number: string,
-  co_years_of_service: string
+  co_years_of_service: string,
+  co_company_hr_email: string
 }
 
 export type CoBorrowerIncome = {

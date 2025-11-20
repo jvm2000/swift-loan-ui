@@ -23,6 +23,8 @@ function validateEmployeeInfo() {
 
   if (!data.co_company_contact_number?.trim()) errors.value.co_company_contact_number = ["Contact number is required"]
 
+  if (!data.co_company_hr_email?.trim()) errors.value.co_company_hr_email = ["Company HR email is required"]
+
   if (data.co_company_contact_number.length !== 11 && data.co_company_contact_number) errors.value.co_company_contact_number = ["Contact number must be 11 characters"]
 
   if (!/^\d+$/.test(data.co_company_contact_number) && data.co_company_contact_number) errors.value.co_company_contact_number = ["Contact number must be a number"]
@@ -83,6 +85,14 @@ useHead({ title: 'Co-Borrower - Employment' })
       placeholder="Enter company contact number"
       required
       :error="getError(errors, 'company_contact_number')"
+    />
+
+    <BaseInput 
+      v-model="coBorrowerEmployeeForm.co_company_hr_email"
+      label="Company's HR Email"
+      placeholder="Enter company HR email"
+      required
+      :error="getError(errors, 'co_company_hr_email')"
     />
 
     <BaseInput
